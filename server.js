@@ -33,8 +33,8 @@ app.get('/', async (req, res) => {
 
 app.post('/', async (req, res) => {
     try {
-        console.log(req);
-        const prompt = req.body.prompt;
+        console.log(req.body);
+        const prompt = req.body.Body;
 
         const response = new MessagingResponse();
         const message = response.message();
