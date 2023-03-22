@@ -12,12 +12,15 @@ const configuration = new Configuration({
     authToken: process.env.TWILIO_AUTH_TOKEN
 });
 
+const MessagingResponse = twilio.twiml.MessagingResponse;
 
 const openai = new OpenAIApi(configuration);
 
 const app = express();
 app.use(cors());
-app.use(express.json());
+app.use(express.urlencoded({
+    extended: true
+}));
 
 //console.log()
 
@@ -30,9 +33,13 @@ app.get('/', async (req, res) => {
 
 app.post('/', async (req, res) => {
     try {
+        console.log(req);
         const prompt = req.body.prompt;
 
-        const response = await openai.createChatCompletion({
+        const response = new MessagingResponse();
+        const message = response.message();
+        
+        message.body(await openai.createChatCompletion({
             model: "gpt-3.5-turbo",
             prompt: `${prompt}`,
             temperature: 0.2,
@@ -40,15 +47,13 @@ app.post('/', async (req, res) => {
             top_p: 1,
             frequency_penalty: 0.5,
             presence_penalty: 0
-        });
+        }));
 
-        res.status(200).send({
-            bot: response.data.choices[0].text
-        });
+        res.type('text/xml').send(response.toString());
     }
     catch (error){
         console.log(error);
-        res.status(500).send({error})
+        //res.status(500).send({error});
     }
 });
 
