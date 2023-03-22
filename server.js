@@ -49,6 +49,8 @@ app.post('/', async (req, res) => {
             presence_penalty: 0
         }));
 
+
+        console.log(response.toString());
         res.type('text/xml').send(response.toString());
     }
     catch (error){
