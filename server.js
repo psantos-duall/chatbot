@@ -53,7 +53,7 @@ app.post('/', async (req, res) => {
         console.log(request.data.choices.message[0]);
         
 
-        message.body(request.data.choices[0]);
+        message.body(request.data.choices.message[0]);
 
 
         //console.log(message.body);
