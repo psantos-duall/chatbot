@@ -25,7 +25,7 @@ app.post('/', async (req, res) => {
     try {
         const prompt = req.body.prompt;
 
-        const responste = await openai.createCompletion({
+        const response = await openai.createCompletion({
             model: "gpt-3.5-turbo",
             prompt: `${prompt}`,
             temperature: 0.2,
@@ -44,3 +44,5 @@ app.post('/', async (req, res) => {
         res.status(500).send({error})
     }
 });
+
+app.listen(5000, () => console.log('AI server started on http://localhost:5000'))
