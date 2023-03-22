@@ -39,7 +39,7 @@ app.post('/', async (req, res) => {
         const response = new MessagingResponse();
         const message = response.message();
         
-        message.body(await openai.createChatCompletion({
+        const request = await openai.createChatCompletion({
             model: "gpt-3.5-turbo",
             messages: [{role: "user", content:`${prompt}`}],
             temperature: 0.2,
@@ -47,7 +47,13 @@ app.post('/', async (req, res) => {
             top_p: 1,
             frequency_penalty: 0.5,
             presence_penalty: 0
-        }));
+        });
+
+        console.log(request);
+        console.log(request.data);
+        
+
+        message.body(request.data);
 
 
         console.log(message.body);
