@@ -49,8 +49,8 @@ app.post('/', async (req, res) => {
             presence_penalty: 0
         });
 
-        console.log(request);
-        console.log(request.data);
+        console.log(request.data.choices);
+        console.log(request.data.choices.message[0]);
         
 
         message.body(request.data.choices[0]);
