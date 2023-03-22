@@ -8,6 +8,8 @@ dotenv.config();
 
 const configuration = new Configuration({
     apiKey: process.env.OPEN_API_KEY,
+    accountSID: process.env.TWILIO_ACCOUNT_SID,
+    authToken: process.env.TWILIO_AUTH_TOKEN
 });
 
 const openai = new OpenAIApi(configuration);
@@ -16,14 +18,20 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+console.log()
+
+/*
 app.get('/', async (req, res) => {
     res.status(200).send({
         message: 'Hello World'
     })
 });
+*/
 
 app.post('/', async (req, res) => {
     try {
+        console.log(req);
+        
         const prompt = req.body.prompt;
 
         const response = await openai.createCompletion({
