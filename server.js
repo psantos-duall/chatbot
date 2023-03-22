@@ -56,8 +56,8 @@ app.post('/', async (req, res) => {
         message.body(request.data);
 
 
-        console.log(message.body);
-        console.log(response.toString());
+        //console.log(message.body);
+        //console.log(response.toString());
         res.type('text/xml').send(response.toString());
     }
     catch (error){
