@@ -12,29 +12,27 @@ const configuration = new Configuration({
     authToken: process.env.TWILIO_AUTH_TOKEN
 });
 
+
 const openai = new OpenAIApi(configuration);
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-console.log()
+//console.log()
 
-/*
+
 app.get('/', async (req, res) => {
     res.status(200).send({
         message: 'Hello World'
     })
 });
-*/
 
 app.post('/', async (req, res) => {
     try {
-        console.log(req);
-        
         const prompt = req.body.prompt;
 
-        const response = await openai.createCompletion({
+        const response = await openai.createChatCompletion({
             model: "gpt-3.5-turbo",
             prompt: `${prompt}`,
             temperature: 0.2,
