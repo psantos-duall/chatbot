@@ -49,7 +49,7 @@ app.post('/', async (req, res) => {
             presence_penalty: 0
         });
 
-        //console.log("first:" + request.data.choices);
+        console.log("choices:" + request.data.choices);
         //console.log("second:" + request.data.choices.message);
         //console.log("third:" + request.data.choices[0].message);
         //console.log(request.data.choices[0].message.content);
