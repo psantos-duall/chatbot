@@ -50,10 +50,13 @@ app.post('/', async (req, res) => {
         });
 
         console.log(request.data.choices);
+        console.log(request.data.choices.message);
+        console.log(request.data.choices[0].message);
+        console.log(request.data.choices[0].message.content);
         console.log(request.data.choices.message.content);
         
 
-        message.body(request.data.choices.message.content);
+        message.body(request.data.choices[0].message.content);
 
 
         //console.log(message.body);
