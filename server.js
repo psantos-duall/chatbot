@@ -49,16 +49,6 @@ app.post('/', async (req, res) => {
             presence_penalty: 0
         });
 
-        request.data.choices.forEach(function(index, item){
-            console.log(`choice ${index}: ` + item);
-        });
-
-        
-        //console.log("second:" + request.data.choices.message);
-        //console.log("third:" + request.data.choices[0].message);
-        //console.log(request.data.choices[0].message.content);
-        
-
         message.body(request.data.choices[0].message.content);
 
 
