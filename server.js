@@ -49,11 +49,11 @@ app.post('/', async (req, res) => {
             presence_penalty: 0
         });
 
-        console.log(request.data.choices);
-        console.log(request.data.choices.message);
-        console.log(request.data.choices[0].message);
-        console.log(request.data.choices[0].message.content);
-        console.log(request.data.choices.message.content);
+        console.log("first:" + request.data.choices);
+        console.log("second:" + request.data.choices.message);
+        console.log("third:" + request.data.choices[0].message);
+        console.log("fourth:" + request.data.choices[0].message.content);
+        console.log("fifth:" + request.data.choices.message.content);
         
 
         message.body(request.data.choices[0].message.content);
